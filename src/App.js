@@ -1,3 +1,4 @@
+'use strict';
 import React from 'react'
 import {
 	BrowserRouter as Router,
@@ -198,14 +199,13 @@ class Teachers extends React.Component{
 	render(){
 		let teachersList = teachers.map((teacher) => {
 			return (
-			<li className="teacher" key={teacher.id} >
-				<img className="teacher-img" src={teacher.img} alt="teacher" />
-				<h3>{teacher.name}</h3>
-				<p>{teacher.description}</p>
-			</li>
+				<li className="teacher" key={teacher.id} >
+					<img className="teacher-img" src={teacher.img} alt="teacher" />
+					<h3>{teacher.name}</h3>
+					<p>{teacher.description}</p>
+				</li>
 			);
 		}); 
-		
 		return (
 			<div className="main-content">
 				<h2>Teachers</h2>
@@ -217,26 +217,26 @@ class Teachers extends React.Component{
 	}	
 }
 
-class Repos extends React.Component {
+class Courses extends React.Component {
 	render() {
 		return (
-      <div className="main-content courses">
-        <div className="course-header group">
-			 	  <h2>COURSES</h2>
-           <ul className="course-nav"> 
-             <li>  <NavLink exact to="/repos/html"> HTML </NavLink> </li>
-             <li>  <NavLink to="/repos/css"> CSS </NavLink> </li>
-             <li>  <NavLink to="/repos/javascript"> JavaScript </NavLink> </li>            
-          </ul>		
+			<div className="main-content courses">
+				<div className="course-header group">
+					<h2>COURSES</h2>
+					<ul className="course-nav"> 
+						<li>  <NavLink exact to="/courses/html"> HTML </NavLink> </li>
+						<li>  <NavLink to="/courses/css"> CSS </NavLink> </li>
+						<li>  <NavLink to="/courses/javascript"> JavaScript </NavLink> </li>            
+					</ul>		
+				</div>
+				<Switch> 
+					<Route exact path= "/courses" 
+						render={()=><Redirect to="/courses/html" /> } />
+					<Route path = "/courses/html" component = {Html}/>
+					<Route path = "/courses/css" component = {Css}/>
+					<Route path = "/courses/javascript" component = {Javascript}/>
+				</Switch>
 			</div>
-      <Switch> 
-            <Route exact path= "/repos" 
-                   render={()=><Redirect to="/repos/html" /> } />
-            <Route path = "/repos/html" component = {Html}/>
-            <Route path = "/repos/css" component = {Css}/>
-            <Route path = "/repos/javascript" component = {Javascript}/>
-          </Switch>
-      </div>
 		);
 	}
 }
@@ -326,19 +326,17 @@ class App extends React.Component {
                 <li><NavLink exact to="/">Home</NavLink></li>
                 <li><NavLink to="/about">About</NavLink></li>
                 <li><NavLink to="/teachers">Teachers</NavLink></li>
-                <li><NavLink to="/repos">Repos</NavLink></li>
-                
+                <li><NavLink to="/courses">Courses</NavLink></li>
               </ul>
-              <hr/>
+			</header>
               <Switch>
                 <Route exact path="/" component={Home}/>
                 <Route path="/about" component={About}/>
                 <Route path="/teachers" component={Teachers}/>
-                <Route path="/repos" component={Repos}/>
+                <Route path="/courses" component={Courses}/>
               </Switch>
-            </header>
           </div>
-      </Router>
+      	</Router>
 		);
 	}
 }
