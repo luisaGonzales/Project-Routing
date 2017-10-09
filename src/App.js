@@ -297,15 +297,15 @@ class Html extends React.Component{
 	render(){
 		let htmlList = this.listHTML.map((course) => {
 			return (
-			<li className="course media group" key={course.id}>
-			<img className="course-img" src={course.img} />
-			<div>
-			  <h3>{course.title}</h3>
-			  <p>{course.description}</p>
-			</div>
-		  </li>
+				<li className="course media group" key={course.id}>
+					<img className="course-img" src={course.img} />
+					<div>
+						<h3>{course.title}</h3>
+						<p>{course.description}</p>
+					</div>
+				</li>
 		)});
-		return(
+		return (
 			<ul>
 				{htmlList}
 			</ul>	
@@ -316,27 +316,27 @@ class Html extends React.Component{
 class App extends React.Component {
 	render() {
 		return (
-        <Router>
-          <div>
-            <header>
-              <span className="logo">
-                <i className="material-icons">code</i>
-              </span>
-              <ul className="main-nav">
-                <li><NavLink exact to="/">Home</NavLink></li>
-                <li><NavLink to="/about">About</NavLink></li>
-                <li><NavLink to="/teachers">Teachers</NavLink></li>
-                <li><NavLink to="/courses">Courses</NavLink></li>
-              </ul>
-			</header>
-              <Switch>
-                <Route exact path="/" component={Home}/>
-                <Route path="/about" component={About}/>
-                <Route path="/teachers" component={Teachers}/>
-                <Route path="/courses" component={Courses}/>
-              </Switch>
-          </div>
-      	</Router>
+			<Router>
+				<div>
+					<header>
+						<span className="logo">
+							<i className="material-icons">code</i>
+						</span>
+						<ul className="main-nav">
+							<li><NavLink exact to="/">Home</NavLink></li>
+							<li><NavLink to="/about">About</NavLink></li>
+							<li><NavLink to="/teachers">Teachers</NavLink></li>
+							<li><NavLink to="/courses">Courses</NavLink></li>
+						</ul>
+					</header>
+					<Switch>
+						<Route exact path="/" component={Home}/>
+						<Route path="/about" component={About}/>
+						<Route path="/teachers" component={Teachers}/>
+						<Route path="/courses" component={Courses}/>
+					</Switch>
+				</div>
+			</Router>
 		);
 	}
 }
