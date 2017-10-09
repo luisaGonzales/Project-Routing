@@ -163,9 +163,9 @@ const courseJS = [
 		img: "https://achievement-images.teamtreehouse.com/badges_JavaScript_nodeBasics_Stage1.png",
 		id: "js6"
 	}
-  ];
+];
 
-  class Home extends React.Component {
+class Home extends React.Component {
 	render() {
 		return (
 			<div className="main-content home ">
@@ -249,14 +249,15 @@ class Css extends React.Component{
 	render(){
 		let cssList = this.listCSS.map((course) => {
 			return (
-			<li className="course media group" key={course.id}>
-			<img className="course-img" src={course.img} />
-			<div>
-			  <h3>{course.title}</h3>
-			  <p>{course.description}</p>
-			</div>
-		  </li>
-		)});
+				<li className="course media group" key={course.id}>
+					<img className="course-img" src={course.img} />
+					<div>
+						<h3>{course.title}</h3>
+						<p>{course.description}</p>
+					</div>
+				</li>
+			)
+		});
 		return(
 			<ul>
 				{cssList}
@@ -273,14 +274,15 @@ class Javascript extends React.Component{
 	render(){
 		let jsList = this.listJS.map((course) => {
 			return (
-			<li className="course media group" key={course.id}>
-			<img className="course-img" src={course.img} />
-			<div>
-			  <h3>{course.title}</h3>
-			  <p>{course.description}</p>
-			</div>
-		  </li>
-		)});
+				<li className="course media group" key={course.id}>
+					<img className="course-img" src={course.img} />
+					<div>
+						<h3>{course.title}</h3>
+						<p>{course.description}</p>
+					</div>
+				</li>
+			)
+		});
 		return(
 			<ul>
 				{jsList}
@@ -304,7 +306,8 @@ class Html extends React.Component{
 						<p>{course.description}</p>
 					</div>
 				</li>
-		)});
+			)
+		});
 		return (
 			<ul>
 				{htmlList}
