@@ -1,9 +1,8 @@
-'use strict';
+// Mandaba alerta porque no es necesario 'use strict';
 import React from 'react'
 import {
 	BrowserRouter as Router,
 	Route,
-	Link,
 	Switch,
 	NavLink,
 	Redirect
@@ -13,37 +12,37 @@ const teachers = [
 	{
 		name: "Angie McAngular",
 		description: "Angie is a web developer and teacher who is passionate about building scalable, data driven web apps, especially ones that address old problems with new tech!",
-		img: "img/angie.png",
+		img: "http://treehouse-code-samples.s3.amazonaws.com/bootstrap-4/img/angie.png",
 		id: "1"
 	},
 	{
 		name: "NodeStradamus",
 		description: "'NodeStra' is a software engineer and philosopher trying to leave the world better than he found it. He codes for non-profits, eCommerce, and large-scale web apps.",
-		img: "img/nodestradamus.png",
+		img: "http://treehouse-code-samples.s3.amazonaws.com/bootstrap-4/img/nodestradamus.png",
 		id: "2"
 	},
 	{
 		name: "Geo 'Lo' Cation",
 		description: "Geo is a JavaScript developer working on large-scale applications. He's also a teacher who strives to support students in removing all barriers to learning code.",
-		img: "img/geo.png",
+		img:  "http://treehouse-code-samples.s3.amazonaws.com/bootstrap-4/img/geo.png",
 		id: "3"
 	},
 	{
 		name: "Ecma Scriptnstuff",
 		description: "Ecma found her passion for computers and programming over 15 years ago. She is excited to introduce people to the wonderful world of JavaScript.",
-		img: "img/ecma.png",
+		img: "http://treehouse-code-samples.s3.amazonaws.com/bootstrap-4/img/ecma.png",
 		id: "4"
 	},
 	{
 		name: "Jay Query",
 		description: "Jay is a developer, author of CSS: The Missing Manual, JavaScript & jQuery: The Missing Manual, and web development teacher.",
-		img: "img/jay.png",
+		img: "http://treehouse-code-samples.s3.amazonaws.com/bootstrap-4/img/jay.png",
 		id: "5"
 	},
 	{
 		name: "Json Babel",
 		description: "All of his professional life, Json has worked with computers online; he is a polyglot programmer and likes using the right tools for the job.",
-		img: "img/json.png",
+		img:  "http://treehouse-code-samples.s3.amazonaws.com/bootstrap-4/img/json.png",
 		id: "6"
 	}
 ];
@@ -250,7 +249,7 @@ class Css extends React.Component{
 		let cssList = this.listCSS.map((course) => {
 			return (
 				<li className="course media group" key={course.id}>
-					<img className="course-img" src={course.img} />
+					<img className="course-img" src={course.img} alt="cssCourse" />
 					<div>
 						<h3>{course.title}</h3>
 						<p>{course.description}</p>
@@ -275,7 +274,7 @@ class Javascript extends React.Component{
 		let jsList = this.listJS.map((course) => {
 			return (
 				<li className="course media group" key={course.id}>
-					<img className="course-img" src={course.img} />
+					<img className="course-img" src={course.img} alt="jsCourse" />
 					<div>
 						<h3>{course.title}</h3>
 						<p>{course.description}</p>
@@ -300,7 +299,7 @@ class Html extends React.Component{
 		let htmlList = this.listHTML.map((course) => {
 			return (
 				<li className="course media group" key={course.id}>
-					<img className="course-img" src={course.img} />
+					<img className="course-img" src={course.img} alt="html"/>
 					<div>
 						<h3>{course.title}</h3>
 						<p>{course.description}</p>
@@ -314,6 +313,14 @@ class Html extends React.Component{
 			</ul>	
 		);
 	} 
+}
+
+class NotFoundPage extends React.Component{
+	render(){
+		return(
+			<Home />
+		);
+	}
 }
 
 class App extends React.Component {
@@ -337,6 +344,7 @@ class App extends React.Component {
 						<Route path="/about" component={About}/>
 						<Route path="/teachers" component={Teachers}/>
 						<Route path="/courses" component={Courses}/>
+						<Route component={NotFoundPage}/>
 					</Switch>
 				</div>
 			</Router>
