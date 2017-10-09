@@ -4,7 +4,8 @@ import {
   Route,
   Link,
   Switch,
-  NavLink
+  NavLink,
+  Redirect
 } from 'react-router-dom'
 
 const teachers = [
@@ -219,32 +220,49 @@ class Teachers extends React.Component{
 
 class Repos extends React.Component {
 	render() {
-		const {route} = this.props;
-		let CurrentList = null;
-		switch (route) {
-
-			case 'css':
-				CurrentList = Css;
-				break;
-			case 'javascript':
-				CurrentList = Javascript;
-				break;
-			default: 
-				CurrentList = Html
-				break;
-		}
+		// const {route} = this.props;
+		// let CurrentList = null;
+		// switch (route) {
+		// 	case 'css':
+		// 		CurrentList = Css;
+		// 		break;
+		// 	case 'javascript':
+		// 		CurrentList = Javascript;
+		// 		break;
+		// 	default: 
+		// 		CurrentList = Html
+		// 		break;
+		// }
 		return (
-			<div className="main-content courses">
-				<div className="course-header group">
-				<h2>COURSES</h2>
-					<ul className="course-nav">
-						<li><a className={CurrentList == Html ? "active": ""} href='#/repos/html'>HTML</a></li>
-						<li><a className={CurrentList == Css ? "active": ""} href='#/repos/css'>CSS</a></li>
-						<li><a className={CurrentList == Javascript ? "active": ""} href='#/repos/javascript'>JavaScript</a></li>
-					</ul>		
-				</div>
-				<CurrentList />	
+			// <div className="main-content courses">
+			// 	<div className="course-header group">
+			// 	<h2>COURSES</h2>
+			// 		<ul className="course-nav">
+			// 			<li><a className={CurrentList == Html ? "active": ""} href='#/repos/html'>HTML</a></li>
+			// 			<li><a className={CurrentList == Css ? "active": ""} href='#/repos/css'>CSS</a></li>
+			// 			<li><a className={CurrentList == Javascript ? "active": ""} href='#/repos/javascript'>JavaScript</a></li>
+			// 		</ul>		
+			// 	</div>
+			// 	<CurrentList />	
+      // </div>
+      <div className="main-content courses">
+        <div className="course-header group">
+			 	  <h2>COURSES</h2>
+           <ul className="course-nav"> 
+             <li>  <NavLink exact to="/repos/html"> HTML </NavLink> </li>
+             <li>  <NavLink to="/repos/css"> CSS </NavLink> </li>
+             <li>  <NavLink to="/repos/javascript"> JavaScript </NavLink> </li>            
+          </ul>		
 			</div>
+      <Switch> 
+            <Route exact path= "/repos" 
+                   render={()=><Redirect to="/repos/html" /> } />
+
+            <Route path = "/repos/html" component = {Html}/>
+            <Route path = "/repos/css" component = {Css}/>
+            <Route path = "/repos/javascript" component = {Javascript}/>
+          </Switch>
+      </div>
 		);
 	}
 }
@@ -322,70 +340,30 @@ class Html extends React.Component{
 }
 
 class App extends React.Component {
-	// constructor(props) {
-	// 	super(props);
-	// 	this.state ={
-	// 		route: window.location.hash.substr(1)
-	// 	};
-	// }
-	// componentDidMount() {
-	// 	window.addEventListener('hashchange', () => {
-	// 		this.setState({
-	// 			route: window.location.hash.substr(1)
-	// 		});
-	// 	});
-	// }
 	render() {
-		// let Child;
-		// let propsForRepos = null;
-		// switch (this.state.route) {
-		// 	case '/about':
-		// 		Child = About;
-		// 		break;
-		// 	case '/repos':
-		// 		Child = Repos;
-		// 		break;
-		// 	case '/teachers':
-		// 		Child = Teachers;
-		// 		break;
-		// 	case '/repos/html':
-		// 		Child = Repos;
-		// 		propsForRepos = 'html';
-		// 		break;
-		// 	case '/repos/css':
-		// 		Child = Repos;
-		// 		propsForRepos = 'css';
-		// 		break;
-		// 	case '/repos/javascript':
-		// 		Child = Repos;
-		// 		propsForRepos = 'javascript';
-		// 		break;
-		// 	default:
-		// 		Child = Home;
-		// }
 		return (
         <Router>
-        <div>
-        <header>
-        	<span className="logo">
-						<i className="material-icons">code</i>
-					</span>
-            <ul className="main-nav">
-              <li ><NavLink to="/">Home</NavLink></li>
-              <li><NavLink to="/about">About</NavLink></li>
-              <li><NavLink to="/repos">Repos</NavLink></li>
-              <li><NavLink to="/teachers">Teachers</NavLink></li>
-            </ul>
-            <hr/>
-            <Switch>
-              <Route exact path="/" component={Home}/>
-              <Route path="/about" component={About}/>
-              <Route path="/repos" component={Repos}/>
-              <Route path="/teachers" component={Teachers}/>
-            </Switch>
-        </header>
-         
-        </div>
+          <div>
+            <header>
+              <span className="logo">
+                <i className="material-icons">code</i>
+              </span>
+              <ul className="main-nav">
+                <li><NavLink exact to="/">Home</NavLink></li>
+                <li><NavLink to="/about">About</NavLink></li>
+                <li><NavLink to="/teachers">Teachers</NavLink></li>
+                <li><NavLink to="/repos">Repos</NavLink></li>
+                
+              </ul>
+              <hr/>
+              <Switch>
+                <Route exact path="/" component={Home}/>
+                <Route path="/about" component={About}/>
+                <Route path="/teachers" component={Teachers}/>
+                <Route path="/repos" component={Repos}/>
+              </Switch>
+            </header>
+          </div>
       </Router>
 		);
 	}
